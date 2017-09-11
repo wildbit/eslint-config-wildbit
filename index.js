@@ -1,58 +1,60 @@
+'use strict'
+
 module.exports = {
-    parser: 'babel-eslint',
-    env: {
-        browser: true, // We write for browser
-        es6: true, // using ES6 syntax
-        commonjs: true, // sometimes requiring modules in CommonJS
-        mocha: true // We use Mocha for tests
-    },
-    extends: [
-        'eslint-config-airbnb/base',
-        'eslint-config-airbnb/rules/strict',
-        'eslint-config-airbnb/rules/react'
-    ].map(require.resolve),
-    plugins: [
-        'flow-vars'
+  env: {
+    es6: true, // This setting enables ES6 syntax automatically
+    jest: true
+  },
+  extends: [
+    'eslint-config-airbnb-base',
+    'eslint-config-airbnb-base/rules/strict',
+    'eslint-plugin-flowtype/dist/configs/recommended',
+    'eslint-config-prettier',
+    'eslint-config-prettier/flowtype'
+  ].map(require.resolve),
+  plugins: ['flowtype', 'prettier'],
+  rules: {
+    'padded-blocks': [0, 'never'],
+    'id-length': [2, { exceptions: ['b', 'x', 'y', 'i'] }],
+    'new-cap': [
+      2,
+      {
+        newIsCap: true,
+        capIsNewExceptions: ['List', 'Map', 'Set']
+      }
     ],
-    rules: {
-        'semi': [2, 'never'],
-        'indent': [2, 4, {
-            'SwitchCase': 1
-        }],
-        'comma-dangle': [2, 'never'],
-        'jsx-quotes': [2, 'prefer-double'],
-        'padded-blocks': [0, 'never'],
-        'id-length': [2, {'exceptions': ['b']}],
-        'new-cap': [2, {
-            'newIsCap': true,
-            'capIsNewExceptions': ['List', 'Map', 'Set']
-        }],
-        'no-console': 2,
-        'no-debugger': 2,
-        'guard-for-in': 0,
-        'object-curly-spacing': [2, 'always'],
-        'template-curly-spacing': [2, 'always'],
+    'no-console': 2,
+    'no-debugger': 2,
+    'guard-for-in': 0,
 
-        // React
-        'react/jsx-indent-props': [2, 4],
-        'react/sort-comp': [2, {
-            order: [
-                'flow-types',
-                'static-methods',
-                'lifecycle',
-                'everything-else',
-                'render'
-            ],
-            groups: {
-                'flow-types': [
-                    'props',
-                    'state'
-                ]
-            }
-        }],
+    // Import
+    'import/no-extraneous-dependencies': [
+      2,
+      {
+        devDependencies: [
+          '**/webpack*.js',
+          '**/*.spec.js',
+          '**/*.stories.js',
+          '**/.storybook/*',
+          'enzyme',
+          'sinon',
+          'mocha',
+          'chai*'
+        ]
+      }
+    ],
 
-        // flow-vars plugin
-        'flow-vars/define-flow-type': 1,
-        'flow-vars/use-flow-type': 1
-    }
-};
+    // Prettier
+    'prettier/prettier': [
+      'error',
+      {
+        printWidth: 100,
+        trailingComma: 'none',
+        singleQuote: true,
+        semi: false,
+        jsxBracketSameLine: false,
+        bracketSpacing: true
+      }
+    ]
+  }
+}

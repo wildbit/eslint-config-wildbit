@@ -1,25 +1,25 @@
-# eslint-config-wildbit
-Wildbit-specific config for ESLint
+# eslint-config-okonet
+
+[![npm](https://img.shields.io/npm/v/eslint-config-okonet.svg)](https://www.npmjs.com/package/eslint-config-okonet)
+[![Build Status](https://travis-ci.org/okonet/eslint-config-okonet.svg)](https://travis-ci.org/okonet/eslint-config-okonet)
+
+ESLint rules from Andrey Okonetchnikov
 
 ## Installation
 
-1. `npm install --save-dev eslint eslint-plugin-react wildbit/eslint-config-wildbit`
+1. `npm install --save-dev eslint eslint-config-okonet`
 2. Add following block to `package.json`
 
 ```json
 "eslintConfig": {
     "extends": [
-      "eslint-config-wildbit"
+      "okonet"
     ]
   }
 ```
 
-## Adding a pre-commit hook
+This will add generic config.
 
-Linting makes more sense when running before committing the code.
+For React.js projects, extend from `okonet/react`
 
-To add a pre-commit task:
-
-1. `npm install -D pre-commit lint-staged`
-2. Add `"eslint-staged": "eslint-staged"` to `scripts` section of `package.json`
-3. Add `"pre-commit": [ "eslint-staged" ]` to `package.json`
+For Node.js projects, extend from `okonet/node`
